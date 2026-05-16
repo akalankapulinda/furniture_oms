@@ -1,0 +1,114 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Furniture OMS - Dashboard</title>
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet">
+</head>
+<body class="bg-light">
+
+<div class="container mt-4">
+    
+    <div class="d-flex justify-content-between align-items-center mb-4">
+        <h2 class="mb-0">🛋️ Executive Dashboard</h2>
+        <a href="/logout" class="btn btn-outline-danger">Log Out</a>
+    </div>
+
+    <div class="row mb-5">
+        
+        <div class="col-md-3 mb-3">
+            <div class="card shadow-sm border-0 border-start border-success border-4 h-100">
+                <div class="card-body">
+                    <p class="text-muted text-uppercase mb-1" style="font-size: 0.85rem; letter-spacing: 0.5px;">Revenue (This Month)</p>
+                    <h3 class="mb-0 text-success">Rs. {{ "{:,.2f}".format(monthly_revenue) }}</h3>
+                </div>
+            </div>
+        </div>
+
+        <div class="col-md-3 mb-3">
+            <div class="card shadow-sm border-0 border-start border-danger border-4 h-100">
+                <div class="card-body">
+                    <p class="text-muted text-uppercase mb-1" style="font-size: 0.85rem; letter-spacing: 0.5px;">Spend (This Month)</p>
+                    <h3 class="mb-0 text-danger">Rs. {{ "{:,.2f}".format(monthly_spend) }}</h3>
+                </div>
+            </div>
+        </div>
+
+        <div class="col-md-3 mb-3">
+            <div class="card shadow-sm border-0 border-start border-primary border-4 h-100">
+                <div class="card-body">
+                    <p class="text-muted text-uppercase mb-1" style="font-size: 0.85rem; letter-spacing: 0.5px;">Total Inventory Value</p>
+                    <h3 class="mb-0 text-primary">Rs. {{ "{:,.2f}".format(inventory_value) }}</h3>
+                </div>
+            </div>
+        </div>
+
+        <div class="col-md-3 mb-3">
+            <div class="card shadow-sm border-0 border-start border-warning border-4 h-100">
+                <div class="card-body">
+                    <p class="text-muted text-uppercase mb-1" style="font-size: 0.85rem; letter-spacing: 0.5px;">Items Sold (This Month)</p>
+                    <h3 class="mb-0 text-dark">{{ items_sold }} Units</h3>
+                </div>
+                
+            </div>
+        </div>
+
+    </div>
+
+    <h4 class="mb-3 text-secondary">System Modules</h4>
+    <div class="row">
+        <div class="col-md-6 mb-3">
+            <div class="card shadow-sm">
+                <div class="card-body text-center py-4">
+                    <h4 class="card-title">📦 Inventory</h4>
+                    <p class="card-text text-muted">Manage your stock, add items, and view availability.</p>
+                    <a href="/inventory" class="btn btn-primary w-50">Open Inventory</a>
+                </div>
+            </div>
+        </div>
+        <div class="col-md-6 mb-3">
+            <div class="card shadow-sm">
+                <div class="card-body text-center py-4">
+                    <h4 class="card-title">🛒 Sales</h4>
+                    <p class="card-text text-muted">Process new customer sales and view outbound history.</p>
+                    <a href="/sales" class="btn btn-success w-50">Open Sales</a>
+                </div>
+            </div>
+        </div>
+        <div class="col-md-6 mb-3">
+            <div class="card shadow-sm">
+                <div class="card-body text-center py-4">
+                    <h4 class="card-title">📥 Purchase Orders</h4>
+                    <p class="card-text text-muted">Receive new stock from suppliers and track inbound shipments.</p>
+                    <a href="/purchase_orders" class="btn btn-info text-white w-50">Open Orders</a>
+                </div>
+            </div>
+        </div>
+        <div class="col-md-6 mb-3">
+            <div class="card shadow-sm">
+                <div class="card-body text-center py-4">
+                    <h4 class="card-title">🤝 Suppliers</h4>
+                    <p class="card-text text-muted">Manage supplier contact details and company information.</p>
+                    <a href="/suppliers" class="btn btn-secondary w-50">Open Suppliers</a>
+                </div>
+            </div>
+        </div>
+    </div>
+
+</div>
+
+</body>
+<footer class="mt-5 pb-4 text-center text-muted">
+        <hr class="mb-4">
+        <div class="d-flex justify-content-center align-items-center">
+            <img src="/static/logo.png" alt="KKP Technologies Logo" style="height: 35px; margin-right: 12px; border-radius: 4px;">
+            <span style="font-size: 0.9rem; font-weight: 500;">
+                &copy; <script>document.write(new Date().getFullYear())</script> Copyright by KKP Technologies. All Rights Reserved.
+            </span>
+        </div>
+    </footer>
+
+</div> 
+
+</html>

@@ -1,0 +1,115 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Furniture OMS - Inventory</title>
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet">
+</head>
+<body class="bg-light">
+
+<div class="container mt-5">
+    <a href="/" class="btn btn-outline-secondary mb-3">🏠 Home</a>
+
+    <h2 class="mb-4 text-center">🛋️ Furniture Inventory Management</h2>
+
+    <div class="row">
+        <div class="col-md-4 mb-4">
+            <div class="card shadow-sm">
+                <div class="card-body">
+                    <h5 class="card-title">Add New Item</h5>
+                    <form action="/add_item_form" method="post">
+                        <div class="mb-3">
+                            <label class="form-label">Name (e.g., Sofa)</label>
+                            <input type="text" name="name" class="form-control" required>
+                        </div>
+                        <div class="mb-3">
+                            <label class="form-label">Category</label>
+                            <input type="text" name="category" class="form-control" required>
+                        </div>
+                        
+                        <div class="mb-3">
+                            <label class="form-label">Primary Supplier</label>
+                            <select name="supplier_id" class="form-select" required>
+                                {% for supplier in suppliers %}
+                                    <option value="{{ supplier.supplier_id }}">{{ supplier.company_name }}</option>
+                                {% else %}
+                                    <option value="" disabled selected>Please add a supplier first!</option>
+                                {% endfor %}
+                            </select>
+                        </div>
+
+                        <div class="mb-3">
+                            <label class="form-label">Price (LKR)</label>
+                            <input type="number" step="0.01" name="price" class="form-control" required>
+                        </div>
+                        <div class="mb-3">
+                            <label class="form-label">Initial Stock Level</label>
+                            <input type="number" name="stock_level" class="form-control" required>
+                        </div>
+                        <button type="submit" class="btn btn-primary w-100">Save Item</button>
+                    </form>
+                </div>
+            </div>
+        </div>
+
+        <div class="col-md-8">
+            <div class="card shadow-sm">
+                <div class="card-body">
+                    
+                    <div class="d-flex justify-content-between align-items-center mb-3">
+                        <h5 class="card-title mb-0">Current Stock</h5>
+                        <form action="/inventory" method="get" class="d-flex">
+                            <input type="text" name="search" class="form-control me-2" placeholder="Search item name..." value="{{ search or '' }}">
+                            <button type="submit" class="btn btn-outline-dark">Search</button>
+                            <a href="/inventory" class="btn btn-outline-danger ms-2">Clear</a>
+                        </form>
+                    </div>
+
+                    <div class="table-responsive">
+                        <table class="table table-hover align-middle">
+                            <thead class="table-dark">
+                                <tr>
+                                    <th>ID</th>
+                                    <th>Item Details</th>
+                                    <th>Supplier</th> <th>Price</th>
+                                    <th>Stock</th>
+                                    <th>Actions</th>
+                                </tr>
+                            </thead>
+                            <tbody>
+                                {% for item in items %}
+                                <tr>
+                                    <td>{{ item.item_id }}</td>
+                                    <td><strong>{{ item.name }}</strong><br><small class="text-muted">{{ item.category }}</small></td>
+                                    
+                                    <td><span class="badge bg-secondary">{{ item.company_name }}</span></td>
+                                    
+                                    <td>Rs. {{ item.price }}</td>
+                                    <td>
+                                        <span class="badge {% if item.stock_level < 5 %}bg-danger{% else %}bg-success{% endif %}">
+                                            {{ item.stock_level }}
+                                        </span>
+                                    </td>
+                                    <td>
+                                        <a href="/edit_item/{{ item.item_id }}" class="btn btn-sm btn-outline-warning">Edit</a>
+                                        <a href="/purchase_orders?item_id={{ item.item_id }}" class="btn btn-sm btn-outline-primary">+ Buy</a>
+                                        <a href="/sales?item_id={{ item.item_id }}" class="btn btn-sm btn-outline-success">- Sell</a>
+                                        <a href="/delete_item/{{ item.item_id }}" class="btn btn-sm btn-outline-danger" onclick="return confirm('Delete this item completely?');">Delete</a>
+                                    </td>
+                                </tr>
+                                {% else %}
+                                <tr><td colspan="6" class="text-center">No items found.</td></tr>
+                                {% endfor %}
+                            </tbody>
+                        </table>
+                    </div>
+
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+</body>
+</html>

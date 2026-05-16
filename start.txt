@@ -1,0 +1,29 @@
+The Restart Commands
+Navigate to your project folder:
+
+DOS
+
+cd "C:\Users\Peoeye System\Desktop\furniture_oms"
+
+Activate your Virtual Environment:
+
+DOS
+
+venv\Scripts\activate
+
+You should now see (venv) appearing at the start of your command line.
+
+Start the FastAPI Server:
+
+DOS
+
+uvicorn main:app --reload
+
+
+if we use mobile phone 
+
+uvicorn main:app --host 0.0.0.0 --port 8000
+
+browser on phone 
+
+http://192.168.1.5:8000
