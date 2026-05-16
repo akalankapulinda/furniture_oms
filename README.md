@@ -153,7 +153,7 @@ furniture-oms/
 ## 1️⃣ Clone the Repository
 
 ```bash
-git clone https://github.com/YOUR_USERNAME/furniture-oms.git
+git clone https://github.com/akalankapulinda/furniture-oms.git
 cd furniture-oms
 ```
 
@@ -326,7 +326,7 @@ This project is licensed under the MIT License.
 
 # 👨‍💻 Author
 
-### YOUR NAME
+### KKP
 Full Stack Developer
 
 - GitHub: https://github.com/akalankapulinda
